@@ -1,0 +1,88 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// Interface
+class LibraryUser {
+public:
+    virtual void registerAccount() = 0;
+    virtual void requestBook() = 0;
+    virtual ~LibraryUser() {}
+};
+
+// KidUser class
+class KidUser : public LibraryUser {
+public:
+    int age;
+    string bookType;
+
+    void registerAccount() override {
+        if (age < 12)
+            cout << "You have successfully registered under a Kids Account\n";
+        else
+            cout << "Sorry, Age must be less than 12 to register as a kid\n";
+    }
+
+    void requestBook() override {
+        if (bookType == "Kids")
+            cout << "Book Issued successfully, please return the book within 10 days\n";
+        else
+            cout << "Oops, you are allowed to take only kids books\n";
+    }
+};
+
+// AdultUser class
+class AdultUser : public LibraryUser {
+public:
+    int age;
+    string bookType;
+
+    void registerAccount() override {
+        if (age > 12)
+            cout << "You have successfully registered under an Adult Account\n";
+        else
+            cout << "Sorry, Age must be greater than 12 to register as an adult\n";
+    }
+
+    void requestBook() override {
+        if (bookType == "Fiction")
+            cout << "Book Issued successfully, please return the book within 7 days\n";
+        else
+            cout << "Oops, you are allowed to take only adult Fiction books\n";
+    }
+};
+
+int main() {
+    // Test case 1 - KidUser
+    KidUser kid;
+
+    kid.age = 10;
+    kid.registerAccount();
+
+    kid.age = 18;
+    kid.registerAccount();
+
+    kid.bookType = "Kids";
+    kid.requestBook();
+
+    kid.bookType = "Fiction";
+    kid.requestBook();
+
+    cout << "\n";
+
+    // Test case 2 - AdultUser
+    AdultUser adult;
+
+    adult.age = 5;
+    adult.registerAccount();
+
+    adult.age = 23;
+    adult.registerAccount();
+
+    adult.bookType = "Kids";
+    adult.requestBook();
+
+    adult.bookType = "Fiction";
+    adult.requestBook();
+
+    return 0;
+}
