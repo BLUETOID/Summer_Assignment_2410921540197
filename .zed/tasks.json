@@ -1,0 +1,9 @@
+[
+    {
+        "label": "Run C++",
+        "command": "g++ -std=c++17 -O2 -o $ZED_DIRNAME/$ZED_STEM $ZED_FILE && $ZED_DIRNAME/$ZED_STEM",
+        "use_new_terminal": false,
+        "reveal": "always",
+        "hide": "never",
+    },
+]
